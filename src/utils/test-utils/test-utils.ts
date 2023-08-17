@@ -1,13 +1,12 @@
-import { ThemeProvider } from "@emotion/react";
-import { RenderOptions, render, screen } from "@testing-library/react";
-import { ReactElement } from "react";
+import { RenderOptions, render } from "@testing-library/react";
+import React from "react";
 
 const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
   return children;
 };
 
 const customRender = (
-  ui: ReactElement,
+  ui: React.ReactElement,
   options?: Omit<RenderOptions, "wrapper">
 ) => {
   render(ui, { wrapper: AllTheProviders, ...options });

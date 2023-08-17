@@ -1,11 +1,13 @@
 import RootLayout from "./layout";
 import React from "react";
+import { render, screen } from "../utils/test-utils";
+import userEvent from "@testing-library/user-event";
 
 describe("Root Layout, ", () => {
   it("renders", () => {
     render(
       <RootLayout>
-        <div></div>
+        <div>hi</div>
       </RootLayout>
     );
     expect(screen.getByRole("link", { name: /home/i })).toHaveAttribute(
@@ -20,5 +22,17 @@ describe("Root Layout, ", () => {
       "href",
       "/blog"
     );
+  });
+  it("active nav css changes on click", async () => {
+    const user = userEvent.setup();
+
+    render(
+      <RootLayout>
+        <div>hi</div>
+      </RootLayout>
+    );
+
+    await user.click(screen.getByRole("button", { name: /exercises/i }));
+    expect(screen.getByTestId(/navItem1/i)).toHaveClass("border-solid");
   });
 });

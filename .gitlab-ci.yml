@@ -1,0 +1,60 @@
+image: node
+
+stages:
+  - build
+  - quality
+
+.yarn:
+  before_script:
+    - yarn install --immutable
+
+lint:
+  extends:
+    - .yarn
+  stage: quality
+  needs: []
+  script:
+    - yarn lint
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "main"
+
+typescript:
+  extends:
+    - .yarn
+  stage: quality
+  needs: []
+  script:
+    - yarn types-check
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "main"
+
+test:
+  extends:
+    - .yarn
+  stage: quality
+  needs: []
+  script:
+    - yarn test:ci
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+  artifacts:
+    reports:
+      junit: coverage/junit.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura-coverage.xml
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "main"
+
+build:
+  extends:
+    - .yarn
+  stage: build
+  script:
+    - yarn
+    - yarn build
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "main"

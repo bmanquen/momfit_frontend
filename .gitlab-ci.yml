@@ -36,7 +36,7 @@ test:
   stage: quality
   needs: []
   script:
-    - yarn test:ci
+    - yarn test
   coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
   artifacts:
     reports:

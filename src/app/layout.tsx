@@ -1,11 +1,10 @@
 "use client";
 
-import { Metadata } from "next";
 import "../styles/globals.css";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import React from "react";
-import { AppBar, Button, Tab, Tabs, Toolbar } from "@mui/material";
+import { AppBar, Button, Toolbar } from "@mui/material";
 
 const inter = Inter({ subsets: ["latin"] });
 

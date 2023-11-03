@@ -1,12 +1,9 @@
 "use client";
 
 import "../styles/globals.css";
-import { Inter } from "next/font/google";
 import Link from "next/link";
 import React from "react";
 import { AppBar, Button, Toolbar } from "@mui/material";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -22,8 +19,8 @@ export default function RootLayout({
   };
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <AppBar className="bg-white">
+      <body>
+        <AppBar className="bg-white" component="nav">
           <Toolbar>
             <div className="flex justify-around w-full">
               {pages.map((page, index) => {
@@ -38,7 +35,7 @@ export default function RootLayout({
                     key={index}
                   >
                     <Button
-                      className="text-black hover:bg-slate-200 py-4 font-bold"
+                      className="text-black hover:bg-slate-200 md:py-4 font-bold"
                       onClick={() => navChange(index)}
                       variant="text"
                     >
@@ -50,7 +47,10 @@ export default function RootLayout({
             </div>
           </Toolbar>
         </AppBar>
-        {children}
+        <div>
+          <Toolbar />
+          {children}
+        </div>
       </body>
     </html>
   );

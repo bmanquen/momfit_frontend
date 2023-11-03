@@ -1,5 +1,5 @@
 default:
-  image: node:16.16.0
+  image: node:18.18.2
 
 stages:
   - quality
@@ -46,7 +46,6 @@ build:
     - .yarn
   stage: build
   script:
-    - yarn
     - yarn build
 
 deploy_preview:

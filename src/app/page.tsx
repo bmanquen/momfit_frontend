@@ -1,23 +1,100 @@
-import { Typography } from "@mui/material";
+"use client";
+import { Button, Divider, Typography } from "@mui/material";
+import { Montserrat, Averia_Serif_Libre } from "next/font/google";
 import React from "react";
 import ServiceCard from "../components/serviceCard/serviceCard";
+import clsx from "clsx";
+import { isMobileOnly } from "react-device-detect";
+import Image from "next/image";
+import logo from "../../public/logo.png";
+import heroImage from "../../public/homePageHero.png";
+
+const montserrat = Montserrat({ subsets: ["latin"] });
+const averia_serif_light = Averia_Serif_Libre({
+  weight: "300",
+  subsets: ["latin"],
+});
 
 export default function Home() {
+  const [isMobile, setIsMobile] = React.useState(false);
+  React.useEffect(() => {
+    setIsMobile(isMobileOnly);
+  }, []);
+
   return (
-    <main className="flex flex-col justify-between items-center min-h-screen dark:bg-neutral-800">
-      <div className="relative w-screen mb-16">
-        <div className="bg-[url(../../public/heroImage.png)] bg-cover py-80">
-          <div className="absolute bg-black opacity-50 inset-0 h-full w-full" />
+    <main className="relative flex flex-col items-center gap-6">
+      <div className="flex justify-around pb-9 md:pb-32 md:pt-16 2xl:pb-52 relative">
+        <Image
+          className="object-cover"
+          src={heroImage}
+          alt="Background picture of mom and baby working out"
+          fill={true}
+          quality={100}
+          sizes="100vh"
+        />
+        <div className="flex flex-col items-center md:flex-row md:justify-around md:w-10/12">
+          <div className="sm:w-3/4 md:w-1/2 flex flex-col items-center text-white relative">
+            <div className="relative w-[100px] h-[100px] md:w-[150px] md:h-[150px] 2xl:w-[300px] 2xl:h-[300px]">
+              <Image alt="Momfit Logo" src={logo} fill={true} />
+            </div>
+            <Typography
+              className={clsx(
+                "text-center text-5xl md:text-7xl 2xl:text-9xl drop-shadow-lg tracking-wide mb-4",
+                averia_serif_light.className
+              )}
+              component="h1"
+              variant="h1"
+            >
+              MOMFIT
+            </Typography>
+
+            <Divider
+              className="bg-white h-1 w-3/5 md:w-4/5 mt-2 md:mt-1 mb-6 md:my-10"
+              component="div"
+              data-testid="heroDivider"
+            />
+            <Typography
+              className={clsx(
+                "text-2xl md:text-3xl 2xl:text-4xl text-center drop-shadow-lg w-3/4 md:w-full 2xl:py-9",
+                averia_serif_light.className
+              )}
+              component="h2"
+              variant="h2"
+            >
+              Functional & Corrective Exercise for Moms
+            </Typography>
+          </div>
+          {!isMobile ? (
+            <div className="md:w-1/2 flex flex-col h-full justify-end items-center">
+              <Typography
+                className={clsx(
+                  "text-sm md:text-base lg:text-xl 2xl:text-4xl text-center font-bold tracking-widest drop-shadow-lg text-white mb-4 lg:my-8",
+                  montserrat.className
+                )}
+                component="p"
+                variant="body1"
+              >
+                Our bodies are amazing! They created beautiful babies. However,
+                sometimes the changes from pregnancy and delivery can cause
+                dysfunction. Let’s use exercise to change that while improving
+                overall fitness and body image.
+              </Typography>
+              <Button
+                className="md:w-2/3 bg-[#b1cfc0] hover:bg-[#3c586b] rounded-full border-[#3c586b] hover:border-[#b1cfc0]"
+                variant="outlined"
+              >
+                <Typography
+                  className="text-white font-bold text-sm 2xl:text-2xl font-roca tracking-widest p-2 md:p-0 lg:p-2"
+                  variant="button"
+                >
+                  SCHEDULE A CONSULTATION
+                </Typography>
+              </Button>
+            </div>
+          ) : null}
         </div>
-        <Typography
-          className="text-center absolute inset-0 w-full top-1/3 text-white"
-          variant="h1"
-          fontWeight={800}
-        >
-          Brooke's Business
-        </Typography>
       </div>
-      <div className="w-11/12 md:w-3/4">
+      <div className="w-11/12 md:w-3/4 ">
         <Typography borderBottom={1} className="mb-6" variant="h4">
           Services
         </Typography>

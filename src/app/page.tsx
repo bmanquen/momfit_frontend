@@ -1,19 +1,11 @@
 "use client";
 import { Button, Divider, Typography } from "@mui/material";
-import { Montserrat, Averia_Serif_Libre } from "next/font/google";
 import React from "react";
 import ServiceCard from "../components/serviceCard/serviceCard";
-import clsx from "clsx";
 import { isMobileOnly } from "react-device-detect";
 import Image from "next/image";
 import logo from "../../public/logo.png";
 import heroImage from "../../public/homePageHero.png";
-
-const montserrat = Montserrat({ subsets: ["latin"] });
-const averia_serif_light = Averia_Serif_Libre({
-  weight: "300",
-  subsets: ["latin"],
-});
 
 export default function Home() {
   const [isMobile, setIsMobile] = React.useState(false);
@@ -25,7 +17,7 @@ export default function Home() {
     <main className="relative flex flex-col items-center gap-6">
       <div className="flex justify-around pb-9 md:pb-32 md:pt-16 2xl:pb-52 relative">
         <Image
-          className="object-cover"
+          className="object-cover -z-10"
           src={heroImage}
           alt="Background picture of mom and baby working out"
           fill={true}
@@ -38,10 +30,7 @@ export default function Home() {
               <Image alt="Momfit Logo" src={logo} fill={true} />
             </div>
             <Typography
-              className={clsx(
-                "text-center text-5xl md:text-7xl 2xl:text-9xl drop-shadow-lg tracking-wide mb-4",
-                averia_serif_light.className
-              )}
+              className="text-center text-5xl md:text-7xl 2xl:text-9xl drop-shadow-lg tracking-wide mb-4 font-averia_serif_light"
               component="h1"
               variant="h1"
             >
@@ -54,10 +43,7 @@ export default function Home() {
               data-testid="heroDivider"
             />
             <Typography
-              className={clsx(
-                "text-2xl md:text-3xl 2xl:text-4xl text-center drop-shadow-lg w-3/4 md:w-full 2xl:py-9",
-                averia_serif_light.className
-              )}
+              className="text-2xl md:text-3xl 2xl:text-4xl text-center drop-shadow-lg w-3/4 md:w-full 2xl:py-9 font-averia_serif_light "
               component="h2"
               variant="h2"
             >
@@ -67,10 +53,7 @@ export default function Home() {
           {!isMobile ? (
             <div className="md:w-1/2 flex flex-col h-full justify-end items-center">
               <Typography
-                className={clsx(
-                  "text-sm md:text-base lg:text-xl 2xl:text-4xl text-center font-bold tracking-widest drop-shadow-lg text-white mb-4 lg:my-8",
-                  montserrat.className
-                )}
+                className="text-sm md:text-base lg:text-xl 2xl:text-4xl text-center font-bold tracking-widest drop-shadow-lg text-white mb-4 lg:my-8 font-montserrat"
                 component="p"
                 variant="body1"
               >

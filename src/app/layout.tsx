@@ -1,9 +1,26 @@
 "use client";
 
 import "../styles/globals.css";
+import { Inter, Montserrat, Averia_Serif_Libre } from "next/font/google";
 import Link from "next/link";
 import React from "react";
 import { AppBar, Button, Toolbar } from "@mui/material";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+});
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-montserrat",
+});
+const averia_serif_light = Averia_Serif_Libre({
+  weight: "300",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-averia-serif",
+});
 
 export default function RootLayout({
   children,
@@ -18,7 +35,12 @@ export default function RootLayout({
     SetActiveNavItem(index);
   };
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={
+        (inter.className, montserrat.variable, averia_serif_light.variable)
+      }
+    >
       <body>
         <AppBar className="bg-white" component="nav">
           <Toolbar>

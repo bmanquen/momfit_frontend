@@ -15,6 +15,21 @@ describe("Home Page, ", () => {
         name: /functional \& corrective exercise for moms/i,
       })
     ).toBeVisible();
+    expect(
+      screen.getByRole("button", { name: /schedule a consultation/i })
+    ).toBeVisible();
+
+    // Intro Section
+    expect(
+      screen.getByRole("heading", { name: /Learn the essentials/i })
+    ).toBeVisible();
+    expect(
+      screen.getByRole("button", { name: /^schedule a consult$/i })
+    ).toBeVisible();
+    expect(screen.getByText(/MOMFIT is a highly specialized/i)).toBeVisible();
+    expect(screen.getByText(/We start with a head-to-toe/i)).toBeVisible();
+    expect(screen.getByText(/Whatever your goal is/i)).toBeVisible();
+    expect(screen.getByAltText("picture of two friends")).toBeVisible();
 
     // Services
     expect(screen.getByRole("heading", { name: /services/i })).toBeVisible();
@@ -49,11 +64,9 @@ describe("Home Page, ", () => {
       })
     ).toBeVisible();
 
-    expect(
-      screen.queryByText(/our bodies are amazing/i)
-    ).not.toBeInTheDocument();
+    expect(screen.queryByText(/our bodies are amazing/i)).toBeInTheDocument();
     expect(
       screen.queryByRole("button", { name: /schedule a consultation/i })
-    ).not.toBeInTheDocument();
+    ).toBeInTheDocument();
   });
 });

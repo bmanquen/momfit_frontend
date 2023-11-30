@@ -31,9 +31,10 @@ export default function RootLayout({
   const pages = ["Home", "Exercises", "Blog"];
   const links = ["/", "/exercises", "/blog"];
 
-  const navChange = (index: number) => {
-    SetActiveNavItem(index);
-  };
+  // TODO: Implement Nav Bar when adding pages to site.
+  // const navChange = (index: number) => {
+  //   SetActiveNavItem(index);
+  // };
   return (
     <html
       lang="en"
@@ -42,7 +43,7 @@ export default function RootLayout({
       }
     >
       <body>
-        <AppBar className="bg-white" component="nav">
+        {/* <AppBar className="bg-white" component="nav">
           <Toolbar>
             <div className="flex justify-around w-full">
               {pages.map((page, index) => {
@@ -68,9 +69,9 @@ export default function RootLayout({
               })}
             </div>
           </Toolbar>
-        </AppBar>
+        </AppBar> */}
         <div>
-          <Toolbar />
+          {/* <Toolbar /> */}
           {children}
         </div>
       </body>

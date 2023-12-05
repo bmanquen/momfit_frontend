@@ -13,6 +13,9 @@ import personalTrainer from "../../public/personal_trainer.png";
 import pregnantHiker from "../../public/pregnant_hiker.png";
 import rockClimber from "../../public/rock_climber.png";
 import treadmillRunner from "../../public/treadmill_runner.png";
+import firefighting from "../../public/firefighting.png";
+import beach from "../../public/beach.png";
+import yogaOutside from "../../public/yoga_outside.png";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 
 export default function Home() {
@@ -51,7 +54,7 @@ export default function Home() {
               data-testid="heroDivider"
             />
             <Typography
-              className="text-2xl 2xl:text-5xl text-center drop-shadow-lg w-3/4 md:w-full 2xl:py-9 font-averia_serif_light lg:tracking-widest"
+              className="text-2xl xl:text-3xl 2xl:text-5xl text-center drop-shadow-lg w-3/4 md:w-full 2xl:py-9 font-averia_serif_light lg:tracking-widest"
               component="h2"
               variant="h2"
             >
@@ -100,22 +103,25 @@ export default function Home() {
             Learn the essentials for fitness after kids
           </Typography>
           <Typography
-            className="font-montserrat tracking-wider font-normal text-sm xl:text-xl 2xl:text-2xl"
+            className="font-montserrat tracking-widest text-base xl:text-xl 2xl:text-2xl"
             component="p"
+            gutterBottom
           >
             MOMFIT is a highly specialized and individualized program to improve
             the fitness for women at any stage of motherhood.
           </Typography>
           <Typography
-            className="font-montserrat tracking-wider font-normal text-sm xl:text-xl 2xl:text-2xl"
+            className="font-montserrat tracking-widest text-base xl:text-xl 2xl:text-2xl"
             component="p"
+            gutterBottom
           >
             We start with a head-to-toe fitness and posture assessment and
             design a program to improve the way you move.
           </Typography>
           <Typography
-            className="font-montserrat tracking-wider font-normal text-sm xl:text-xl 2xl:text-2xl"
+            className="font-montserrat tracking-widest text-base xl:text-xl 2xl:text-2xl"
             component="p"
+            gutterBottom
           >
             Whatever your goal is whether it is to finally get rid your back
             pain so that you can pick up and chase your kids, stop leaking and
@@ -131,10 +137,11 @@ export default function Home() {
           </Button>
         </div>
       </div>
-      <div className="flex flex-col items-center md:items-start md:flex-row md:px-8 xl:px-20 pt-8 md:pt-10 lg:pt-16 bg-[#f1ebe5] gap-4 xl:gap-7">
+      <div className="flex flex-col items-center md:items-start md:flex-row md:px-8 xl:px-20 py-8 md:py-10 lg:py-16 bg-[#f1ebe5] gap-4 xl:gap-7">
         <Typography
           className="font-averia_serif_light text-[#273854] text-center md:text-left text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-extrabold w-2/3 md:w-1/3 pb-2"
-          variant="h4"
+          component="h3"
+          variant="h3"
         >
           What we can help with
         </Typography>
@@ -217,6 +224,67 @@ export default function Home() {
               Chronic Back Pain
             </Typography>
           </div>
+        </div>
+      </div>
+      <div className="bg-[#cdcfc0] flex flex-col md:flex-row gap-2 md:gap-8 lg:gap-12 2xl:gap-16 pt-2 md:py-8 xl:py-12 2xl:py-16 px-2 md:px-8 xl:px-12 2xl:px-16">
+        <div className="grid grid-cols-3 md:grid-cols-1 gap-2 lg:gap-8 2xl:gap-12">
+          <Image
+            alt="firefighters working"
+            className="rounded-tl-[2rem] rounded-br-[2rem] md:rounded-tl-[4rem] md:rounded-br-[4rem] 2xl:rounded-tl-[6rem] 2xl:rounded-br-[6rem] w-full"
+            src={firefighting}
+          />
+          <Image
+            alt="mom and baby at the beach with a surfboard"
+            className="rounded-tl-[2rem] rounded-br-[2rem] md:rounded-tl-[4rem] md:rounded-br-[4rem] 2xl:rounded-tl-[6rem] 2xl:rounded-br-[6rem] w-full"
+            src={beach}
+          />
+          <Image
+            alt="two ladies doing yoga outside"
+            className="rounded-tl-[2rem] rounded-br-[2rem] md:rounded-tl-[4rem] md:rounded-br-[4rem] 2xl:rounded-tl-[6rem] 2xl:rounded-br-[6rem] w-full"
+            src={yogaOutside}
+          />
+        </div>
+        <div className="flex flex-col gap-2 md:gap-4 lg:gap-6 xl:gap-8 text-center">
+          <Typography
+            className="font-averia_serif_light text-[#423f32] text-4xl lg:text-6xl xl:text-8xl"
+            component="h3"
+            variant="h3"
+          >
+            About Brooke
+          </Typography>
+          <Typography
+            className="font-averia_serif_light text-[#423f32] text-xl lg:text-2xl xl:text-4xl 2xl:text-5xl font-medium"
+            component="p"
+            variant="overline"
+          >
+            NASM CPT, PCES
+          </Typography>
+          <Typography
+            className="text-justify font-montserrat tracking-widest text-base lg:text-xl xl:text-2xl 2xl:text-3xl lg:leading-8 xl:leading-10 2xl:leading-[3.5rem] text-[#423f32]"
+            component="p"
+            variant="body1"
+            gutterBottom
+          >
+            As a firefighter and lifelong athlete, Brooke made it a top priority
+            to maintain a high level of physical fitness throughout her first
+            pregnancy. However, after experiencing the challenges of pregnancy
+            she quickly realized that her old workout strategies weren’t the
+            most effective during a pregnancy.
+          </Typography>
+          <Typography
+            className="text-justify font-montserrat tracking-widest text-base lg:text-xl xl:text-2xl 2xl:text-3xl lg:leading-8 xl:leading-10 2xl:leading-[3.5rem] text-[#423f32]"
+            component="p"
+            variant="body1"
+          >
+            After a traumatic birth she wondered if she would ever lift weights,
+            surf, or carry her son pain-free. After trying every postpartum
+            recovery method she could find, she finally saw results when she saw
+            a corrective exercise specialist. She was inspired to get her
+            professional certification so that she could help other women see
+            the same life-changing results. Brooke combines her passion for
+            corrective exercise and functional training to educate women about
+            their bodies and to empower them to use them better.
+          </Typography>
         </div>
       </div>
     </main>

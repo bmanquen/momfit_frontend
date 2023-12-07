@@ -1,7 +1,6 @@
 import Home from "./page";
 import React from "react";
 import { render, screen } from "../utils/test-utils";
-import * as rdd from "react-device-detect";
 
 describe("Home Page, ", () => {
   it("renders hero section", () => {
@@ -60,4 +59,30 @@ describe("Home Page, ", () => {
   });
 
   // About
+  it("renders about section", () => {
+    render(<Home />);
+    expect(
+      screen.getByRole("heading", { name: /about brooke/i })
+    ).toBeVisible();
+    expect(screen.getByText(/nasm cpt, pces/i)).toBeVisible();
+    expect(screen.getByText(/^as a firefighter/i)).toBeVisible();
+    expect(
+      screen.getByText(/the most effective during a pregnancy.$/i)
+    ).toBeVisible();
+    expect(screen.getByText(/^after a traumatic birth/i)).toBeVisible();
+    expect(
+      screen.getByText(/empower them to use them better.$/i)
+    ).toBeVisible();
+    expect(
+      screen.getByRole("img", { name: /firefighters working/i })
+    ).toBeVisible();
+    expect(
+      screen.getByRole("img", {
+        name: /mom and baby at the beach with a surfboard/i,
+      })
+    ).toBeVisible();
+    expect(
+      screen.getByRole("img", { name: /two ladies doing yoga outside/i })
+    ).toBeVisible();
+  });
 });

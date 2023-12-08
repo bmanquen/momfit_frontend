@@ -42,6 +42,9 @@ export default function RootLayout({
         (inter.className, montserrat.variable, averia_serif_light.variable)
       }
     >
+      <head>
+        <title>MOMFIT</title>
+      </head>
       <body>
         {/* <AppBar className="bg-white" component="nav">
           <Toolbar>

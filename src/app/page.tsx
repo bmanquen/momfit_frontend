@@ -1,7 +1,6 @@
 "use client";
 import { Button, Divider, Typography } from "@mui/material";
-import React from "react";
-// import ServiceCard from "../components/serviceCard/serviceCard";
+import React, { useRef } from "react";
 import { isMobileOnly } from "react-device-detect";
 import Image from "next/image";
 import logo from "../../public/logo.png";
@@ -11,19 +10,22 @@ import pregSurferImg from "../../public/pregnant_surfer.png";
 import bandedPullup from "../../public/banded_pullups.png";
 import personalTrainer from "../../public/personal_trainer.png";
 import pregnantHiker from "../../public/pregnant_hiker.png";
-import rockClimber from "../../public/rock_climber.png";
+import yoga from "../../public/yoga.png";
 import treadmillRunner from "../../public/treadmill_runner.png";
 import firefighting from "../../public/firefighting.png";
 import beach from "../../public/beach.png";
 import yogaOutside from "../../public/yoga_outside.png";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
+import PhoneIphoneRoundedIcon from "@mui/icons-material/PhoneIphoneRounded";
+import LocationOnSharpIcon from "@mui/icons-material/LocationOnSharp";
 
 export default function Home() {
-  const [isMobile, setIsMobile] = React.useState(false);
-  React.useEffect(() => {
-    setIsMobile(isMobileOnly);
-  }, []);
+  const contactRef = useRef(null);
 
+  function scrollToContact() {
+    contactRef.current.scrollIntoView();
+  }
   return (
     <main className="relative flex flex-col">
       <div className="flex justify-around pb-9 md:p-16 lg:p-24 xl:p-44 2xl:p-24 relative">
@@ -74,6 +76,7 @@ export default function Home() {
             </Typography>
             <Button
               className="md:w-3/4 bg-[#b1cfc0] rounded-full border-[#3c586b] bg-opacity-70 hover:bg-opacity-100"
+              onClick={scrollToContact}
               variant="outlined"
             >
               <Typography
@@ -131,6 +134,7 @@ export default function Home() {
           <Button
             className="bg-[#f1ebe5] text-[#166569] font-averia_serif_light font-bold tracking-widest rounded-full xl:text-xl 2xl:text-2xl mt-4 md:mt-0 w-3/4"
             endIcon={<ArrowRightAltIcon style={{ fontSize: 30 }} />}
+            onClick={scrollToContact}
             variant="contained"
           >
             SCHEDULE A CONSULT
@@ -212,11 +216,7 @@ export default function Home() {
             </Typography>
           </div>
           <div>
-            <Image
-              alt="lady rock climbing"
-              className="rounded-xl min-w-full"
-              src={rockClimber}
-            />
+            <Image alt="ladies doing yoga" className="rounded-xl" src={yoga} />
             <Typography
               className="text-center font-montserrat text-sm xl:text-2xl tracking-[0.3rem] pt-2 font-medium uppercase"
               component="p"
@@ -226,8 +226,8 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="bg-[#cdcfc0] flex flex-col md:flex-row gap-2 md:gap-8 lg:gap-12 2xl:gap-16 pt-2 md:py-8 xl:py-12 2xl:py-16 px-2 md:px-8 xl:px-12 2xl:px-16">
-        <div className="grid grid-cols-3 md:grid-cols-1 gap-2 lg:gap-8 2xl:gap-12">
+      <div className="bg-[#cdcfc0] flex flex-col items-center md:flex-row gap-2 md:gap-8 lg:gap-12 2xl:gap-16 py-2 md:py-8 xl:py-12 2xl:py-16 px-2 md:px-8 xl:px-12 2xl:px-16">
+        <div className="grid grid-cols-3 md:grid-cols-1 gap-2 md:gap-4 lg:gap-8 2xl:gap-12 md:w-1/3">
           <Image
             alt="firefighters working"
             className="rounded-tl-[2rem] rounded-br-[2rem] md:rounded-tl-[4rem] md:rounded-br-[4rem] 2xl:rounded-tl-[6rem] 2xl:rounded-br-[6rem] w-full"
@@ -244,7 +244,7 @@ export default function Home() {
             src={yogaOutside}
           />
         </div>
-        <div className="flex flex-col gap-2 md:gap-4 lg:gap-6 xl:gap-8 text-center">
+        <div className="flex flex-col gap-2 md:gap-4 lg:gap-6 xl:gap-8 w-5/6 text-center">
           <Typography
             className="font-averia_serif_light text-[#423f32] text-4xl lg:text-6xl xl:text-8xl"
             component="h3"
@@ -285,6 +285,47 @@ export default function Home() {
             corrective exercise and functional training to educate women about
             their bodies and to empower them to use them better.
           </Typography>
+        </div>
+      </div>
+      {/* TODO: fix responsiveness */}
+      <div
+        className="flex flex-col items-center bg-[url(../../public/contact_background.png)] bg-cover pb-4"
+        ref={contactRef}
+      >
+        <div className="flex flex-col items-center w-4/5 md:w-2/5 xl:w-1/3 2xl:w-1/4">
+          <Image className="w-24 md:w-28" alt="Momfit logo" src={logo} />
+          <Typography
+            className="text-white text-center font-averia_serif_light text-5xl lg:text-7xl"
+            component="h3"
+            variant="h3"
+          >
+            Contact MOMFIT
+          </Typography>
+          <Divider
+            className="bg-white h-1 w-4/5 lg:w-2/3 my-4 md:my-8 lg:my-6 2xl:my-6"
+            component="div"
+            data-testid="contactDivider"
+          />
+        </div>
+        <div className="flex flex-col gap-4 text-white">
+          <div className="flex gap-4 lg:gap-10">
+            <EmailRoundedIcon fontSize="large" />
+            <Typography className="font-montserrat align-middle xl:text-xl">
+              momfitokc@gmail.com
+            </Typography>
+          </div>
+          <div className="flex gap-4 lg:gap-10">
+            <PhoneIphoneRoundedIcon fontSize="large" />
+            <Typography className="font-montserrat align-middle xl:text-xl">
+              (714)-732-3484
+            </Typography>
+          </div>
+          <div className="flex gap-4 lg:gap-10 xl:text-xl">
+            <LocationOnSharpIcon fontSize="large" />
+            <Typography className="font-montserrat align-middle xl:text-xl">
+              Located in Edmond, OK
+            </Typography>
+          </div>
         </div>
       </div>
     </main>

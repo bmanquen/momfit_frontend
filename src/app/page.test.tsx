@@ -7,7 +7,7 @@ describe("Home Page, ", () => {
     render(<Home />);
 
     // Hero Image
-    expect(screen.getByRole("heading", { name: /momfit/i })).toBeVisible();
+    expect(screen.getByRole("heading", { name: /^momfit$/i })).toBeVisible();
     expect(screen.getByTestId("heroDivider")).toBeVisible();
     expect(
       screen.getByRole("heading", {
@@ -55,7 +55,7 @@ describe("Home Page, ", () => {
       screen.getByAltText(/pregnant lady hiking in the mountains/i)
     ).toBeVisible();
     expect(screen.getByText(/chronic back pain/i)).toBeVisible();
-    expect(screen.getByAltText(/lady rock climbing/i)).toBeVisible();
+    expect(screen.getByAltText(/^ladies doing yoga$/i)).toBeVisible();
   });
 
   // About
@@ -84,5 +84,17 @@ describe("Home Page, ", () => {
     expect(
       screen.getByRole("img", { name: /two ladies doing yoga outside/i })
     ).toBeVisible();
+  });
+
+  //TODO finish this part
+  // Contact
+  it("renders contact section", () => {
+    render(<Home />);
+    expect(
+      screen.getByRole("heading", { name: /contact momfit/i })
+    ).toBeVisible();
+    expect(screen.getByText(/momfitokc@gmail.com/i)).toBeVisible();
+    expect(screen.getByText("(714)-732-3484")).toBeVisible();
+    expect(screen.getByText(/Located in Edmond, Ok/i)).toBeVisible();
   });
 });

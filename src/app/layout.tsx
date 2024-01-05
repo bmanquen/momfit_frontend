@@ -4,6 +4,9 @@ import "../styles/globals.css";
 import { Inter, Montserrat, Averia_Serif_Libre } from "next/font/google";
 import Link from "next/link";
 import React from "react";
+// TODO: Implement Analytics once we resolve issues with Jest.
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { AppBar, Button, Toolbar } from "@mui/material";
 
 const inter = Inter({
@@ -97,6 +100,8 @@ export default function RootLayout({
         <div>
           {/* <Toolbar /> */}
           {children}
+          <Analytics />
+          <SpeedInsights />
         </div>
       </body>
     </html>

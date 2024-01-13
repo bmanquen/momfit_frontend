@@ -10,7 +10,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { AppBar, Button, IconButton, Toolbar } from "@mui/material";
 import { isMobileOnly } from "react-device-detect";
-import logo from "../../public/logo.png";
+import navyLogo from "../../public/navyLogo.png";
 import MenuIcon from "@mui/icons-material/Menu";
 import LaunchIcon from "@mui/icons-material/Launch";
 import clsx from "clsx";
@@ -102,8 +102,8 @@ export default function RootLayout({
                 <Link href={links[0]}>
                   <Image
                     alt="Momfit logo"
-                    className="filter invert mr-6"
-                    src={logo}
+                    className="mr-6"
+                    src={navyLogo}
                     width={60}
                   />
                 </Link>

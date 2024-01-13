@@ -3,8 +3,9 @@ import { Button, Divider, Typography } from "@mui/material";
 import React, { useRef } from "react";
 import { isMobileOnly } from "react-device-detect";
 import Image from "next/image";
-import logo from "../../public/logo.png";
-import heroImage from "../../public/homePageHero.png";
+import navyLogo from "../../public/navyLogo.png";
+import whiteLogo from "../../public/whiteLogo.png";
+import heroImage from "../../public/Home.png";
 import introImage from "../../public/intro_img.png";
 import pregSurferImg from "../../public/pregnant_surfer.png";
 import bandedPullup from "../../public/banded_pullups.png";
@@ -14,7 +15,7 @@ import yoga from "../../public/yoga.png";
 import treadmillRunner from "../../public/treadmill_runner.png";
 import firefighting from "../../public/firefighting.png";
 import beach from "../../public/beach.png";
-import yogaOutside from "../../public/yoga_outside.png";
+import brookeAndZeke from "../../public/brookeAndZeke.png";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import PhoneIphoneRoundedIcon from "@mui/icons-material/PhoneIphoneRounded";
@@ -28,7 +29,7 @@ export default function Home() {
   }
   return (
     <main className="relative flex flex-col">
-      <div className="flex justify-around pb-9 md:p-16 lg:p-24 xl:p-44 2xl:p-24 relative">
+      <div className="flex justify-around pb-9 md:py-16 lg:py-24 xl:py-44 2xl:py-48 relative shadow-[0px_10px_50px_0px_gray]">
         <Image
           className="object-cover -z-10"
           src={heroImage}
@@ -37,13 +38,13 @@ export default function Home() {
           quality={100}
           sizes="100vh"
         />
-        <div className="flex flex-col items-center md:flex-row md:justify-around w-full gap-6 2xl:gap-32">
-          <div className="sm:w-3/4 md:w-1/2 flex flex-col items-center text-white relative">
-            <div className="relative w-[100px] h-[100px] md:w-[150px] md:h-[150px] 2xl:w-[250px] 2xl:h-[250px]">
-              <Image alt="Momfit Logo" src={logo} fill={true} />
+        <div className="flex flex-col md:flex-row w-full gap-6 2xl:gap-40">
+          <div className="items-center w-1/2 md:w-1/3 flex flex-col md:ml-[10%] text-[#1e3653] relative">
+            <div className="relative w-[100px] h-[100px] md:w-[150px] md:h-[150px] lg:w-[200px] lg:h-[200px] 2xl:w-[250px] 2xl:h-[250px]">
+              <Image alt="Momfit Logo" src={navyLogo} fill={true} />
             </div>
             <Typography
-              className="text-center text-4xl md:text-6xl 2xl:text-8xl drop-shadow-lg tracking-wide md:mb-4 font-averia_serif_light"
+              className="text-left md:text-center text-4xl md:text-6xl lg:text-8xl drop-shadow-lg tracking-wide md:mb-4 font-averia_serif_light"
               component="h1"
               variant="h1"
             >
@@ -51,97 +52,80 @@ export default function Home() {
             </Typography>
 
             <Divider
-              className="bg-white h-1 w-3/5 md:w-4/5 my-4 md:my-8 2xl:my-6"
+              className="bg-[#1e3653] h-1 w-3/5 md:w-4/5 lg:w-full my-2 2xl:my-6"
               component="div"
               data-testid="heroDivider"
             />
             <Typography
-              className="text-2xl xl:text-3xl 2xl:text-5xl text-center drop-shadow-lg w-3/4 md:w-full 2xl:py-9 font-averia_serif_light lg:tracking-widest"
+              className="text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl text-center drop-shadow-lg w-3/4 md:w-full 2xl:py-9 font-averia_serif_light lg:tracking-widest font-bold"
               component="h2"
               variant="h2"
             >
               Functional & Corrective Exercise for Moms
             </Typography>
           </div>
-
-          <div className="w-3/4 md:w-1/2 flex flex-col h-full items-center md:pt-14 lg:pt-0 2xl:pt-20">
-            <Typography
-              className="text-sm md:text-[16px] lg:text-[20px] xl:text-[24px] 2xl:text-[32px] text-justify tracking-widest drop-shadow-lg text-white mb-4 font-montserrat leading-6 md:leading-8 lg:leading-10 xl:leading-[3rem] 2xl:leading-[4rem]"
-              component="p"
-            >
-              Our bodies are amazing! They created beautiful babies. However,
-              sometimes the changes from pregnancy and delivery can cause
-              dysfunction. Let’s use exercise to change that while improving
-              overall fitness and body image.
-            </Typography>
-            <Button
-              className="md:w-3/4 bg-[#b1cfc0] rounded-full border-[#3c586b] bg-opacity-70 hover:bg-opacity-100"
-              onClick={scrollToContact}
-              variant="outlined"
-            >
-              <Typography
-                className="text-white font-bold text-sm 2xl:text-2xl font-averia_serif_light tracking-widest p-2 md:p-0 lg:p-2"
-                variant="button"
-              >
-                SCHEDULE A CONSULTATION
-              </Typography>
-            </Button>
-          </div>
         </div>
       </div>
-      <div className="bg-[#cdcfc0] w-full flex flex-col md:flex-row md:justify-center p-8 lg:py-12 md:gap-6 lg:gap-12 xl:gap-48 2xl:gap-56">
-        <div className="w-full md:w-1/2 lg:w-1/3 2xl:w-1/4 pb-2">
+      <div className="w-full flex flex-col md:flex-row md:justify-center p-8 md:p-4 lg:p-8 lg:py-12 md:gap-6 lg:gap-12 xl:gap-28 2xl:gap-56 shadow-[0px_10px_50px_0px_gray]">
+        <div className="w-full md:w-1/2 2xl:w-1/3 pb-2">
           <Image
-            className="object-cover object-[top_50%_right_25%] rounded-[100%] h-full"
+            className="object-cover object-[top_50%_right_25%] md:object-[top_50%_right_25%] rounded-[100%] h-full"
             alt="picture of two friends"
             src={introImage}
           />
         </div>
-        <div className="items-center text-justify md:w-1/2 xl:w-2/5 flex flex-col gap-2 md:gap-4 lg:gap-6 2xl:gap-10">
+        <div className="text-justify md:w-1/2 flex flex-col gap-2 md:gap-4 lg:gap-6 2xl:gap-10">
           <Typography
             className="font-averia_serif_light text-[#3c586b] font-bold tracking-widest text-center text-2xl lg:text-4xl 2xl:text-6xl pb-4 md:pb-0"
             component="h3"
             variant="h3"
           >
-            Learn the essentials for fitness after kids
+            Learn the Essentials for Fitness After Kids
+          </Typography>
+          <Typography
+            className="font-montserrat tracking-widest text-base xl:text-xl 2xl:text-2xl"
+            component="p"
+          >
+            Are you unsure of how to safely return to exercise during or after
+            pregnancy?
           </Typography>
           <Typography
             className="font-montserrat tracking-widest text-base xl:text-xl 2xl:text-2xl"
             component="p"
             gutterBottom
           >
-            MOMFIT is a highly specialized and individualized program to improve
-            the fitness for women at any stage of motherhood.
+            Are you frustrated by lingering diastasis, prolapse, or leaking?
           </Typography>
           <Typography
             className="font-montserrat tracking-widest text-base xl:text-xl 2xl:text-2xl"
             component="p"
             gutterBottom
           >
-            We start with a head-to-toe fitness and posture assessment and
-            design a program to improve the way you move.
+            We offer mommy and me fitness classes, workshops, and one-on-one
+            training sessions to educate moms how to use movement to get
+            stronger and heal their bodies. Whether you are training to keep up
+            with your toddler or are a seasoned ahtlete, we have a place for
+            you.
           </Typography>
           <Typography
             className="font-montserrat tracking-widest text-base xl:text-xl 2xl:text-2xl"
             component="p"
             gutterBottom
           >
-            Whatever your goal is whether it is to finally get rid your back
-            pain so that you can pick up and chase your kids, stop leaking and
-            get back into running, or train for a backpacking trip. Let’s get
-            you back to what you love doing!
+            We're here to help you get back to what you love to do and feel
+            great doing it. We're here to teach you to Train Like a Mom.
           </Typography>
           <Button
-            className="bg-[#f1ebe5] text-[#166569] font-averia_serif_light font-bold tracking-widest rounded-full xl:text-xl 2xl:text-2xl mt-4 md:mt-0 w-3/4"
+            className="text-[#166569] hover:bg-gray-200 border-black border-2 self-center font-averia_serif_light font-bold tracking-widest rounded-md text-base xl:text-xl 2xl:text-2xl mt-4 md:mt-0 px-12"
             endIcon={<ArrowRightAltIcon style={{ fontSize: 30 }} />}
             onClick={scrollToContact}
-            variant="contained"
+            variant="outlined"
           >
-            SCHEDULE A CONSULT
+            CONTACT US
           </Button>
         </div>
       </div>
-      <div className="flex flex-col items-center md:items-start md:flex-row md:px-8 xl:px-20 py-8 md:py-10 lg:py-16 bg-[#f1ebe5] gap-4 xl:gap-7">
+      <div className="flex flex-col items-center md:items-start md:flex-row md:px-8 xl:px-20 py-8 md:py-10 lg:py-16 gap-4 xl:gap-7 shadow-[0px_10px_50px_0px_gray]">
         <Typography
           className="font-averia_serif_light text-[#273854] text-center md:text-left text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-extrabold w-2/3 md:w-1/3 pb-2"
           component="h3"
@@ -221,12 +205,31 @@ export default function Home() {
               className="text-center font-montserrat text-sm xl:text-2xl tracking-[0.3rem] pt-2 font-medium uppercase"
               component="p"
             >
-              Chronic Back Pain
+              Chronic Back Aches
             </Typography>
           </div>
         </div>
       </div>
-      <div className="bg-[#cdcfc0] flex flex-col items-center md:flex-row gap-2 md:gap-8 lg:gap-12 2xl:gap-16 py-2 md:py-8 xl:py-12 2xl:py-16 px-2 md:px-8 xl:px-12 2xl:px-16">
+      <div className="flex flex-col justify-center items-center gap-12 md:gap-16 lg:gap-24 xl:gap-28 2xl:gap-32 pb-16 md:pb-24 lg:pb-40 xl:pb-44 2xl:pb-48 shadow-[0px_20px_50px_0px_gray]">
+        <Typography
+          className="font-averia_serif_light bg-[#273854] text-white p-2 md:p-4 lg:p-8 xl:p-12 2xl:p-16 text-center text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-extrabold w-full"
+          component="h3"
+          variant="h3"
+        >
+          We do things a bit differently at MOMFIT...
+        </Typography>
+        <Typography
+          className="text-justify font-montserrat tracking-widest font-medium md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl md:!leading-[2rem] lg:!leading-[3rem] xl:!leading-[4rem] 2xl:!leading-[5rem] w-11/12 md:w-3/4"
+          component="p"
+        >
+          We're not just another mom bootcamp. We have a strong focus on
+          empowering women with education and a strong focus on quality of
+          movement. Brooke combines her education in corrective exercise and
+          tactical fitness to get moms moving better both in and out of they
+          gym.
+        </Typography>
+      </div>
+      <div className="bg-[#1e3653] text-white flex flex-col items-center md:flex-row gap-2 md:gap-8 lg:gap-12 2xl:gap-16 py-2 md:py-8 xl:py-12 2xl:py-16 px-2 md:px-8 xl:px-12 2xl:px-16 shadow-[0px_10px_50px_0px_gray]">
         <div className="grid grid-cols-3 md:grid-cols-1 gap-2 md:gap-4 lg:gap-8 2xl:gap-12 md:w-1/3">
           <Image
             alt="firefighters working"
@@ -239,61 +242,58 @@ export default function Home() {
             src={beach}
           />
           <Image
-            alt="two ladies doing yoga outside"
+            alt="Brooke and Zeke looking at each other"
             className="rounded-tl-[2rem] rounded-br-[2rem] md:rounded-tl-[4rem] md:rounded-br-[4rem] 2xl:rounded-tl-[6rem] 2xl:rounded-br-[6rem] w-full"
-            src={yogaOutside}
+            src={brookeAndZeke}
           />
         </div>
-        <div className="flex flex-col gap-2 md:gap-4 lg:gap-6 xl:gap-8 w-5/6 text-center">
+        <div className="flex flex-col gap-2 md:gap-4 lg:gap-6 xl:gap-8 w-5/6 text-center py-4`">
           <Typography
-            className="font-averia_serif_light text-[#423f32] text-4xl lg:text-6xl xl:text-8xl"
+            className="font-averia_serif_light text-4xl lg:text-6xl xl:text-8xl"
             component="h3"
             variant="h3"
           >
             About Brooke
           </Typography>
           <Typography
-            className="font-averia_serif_light text-[#423f32] text-xl lg:text-2xl xl:text-4xl 2xl:text-5xl font-medium"
+            className="font-averia_serif_light text-xl lg:text-2xl xl:text-4xl 2xl:text-5xl font-medium"
             component="p"
             variant="overline"
           >
             NASM CPT, PCES
           </Typography>
           <Typography
-            className="text-justify font-montserrat tracking-widest text-base lg:text-xl xl:text-2xl 2xl:text-3xl lg:leading-8 xl:leading-10 2xl:leading-[3.5rem] text-[#423f32]"
+            className="text-justify font-montserrat tracking-widest text-base lg:text-xl xl:text-2xl 2xl:text-3xl lg:leading-8 xl:leading-10 2xl:leading-[3.5rem]"
             component="p"
             variant="body1"
             gutterBottom
           >
-            As a firefighter and lifelong athlete, Brooke made it a top priority
-            to maintain a high level of physical fitness throughout her first
-            pregnancy. However, after experiencing the challenges of pregnancy
-            she quickly realized that her old workout strategies weren’t the
-            most effective during a pregnancy.
+            I got pregnant while in the best shape of my life and struggled to
+            maintain my fitness without pain throughout my pregnancy. I had a
+            traumatic birth that brought my life to a halt. I finally found
+            recovery through corrective exercise and became so passionate about
+            it that I decided to devote my career to helping other moms attain
+            the same life-changing results.
           </Typography>
           <Typography
-            className="text-justify font-montserrat tracking-widest text-base lg:text-xl xl:text-2xl 2xl:text-3xl lg:leading-8 xl:leading-10 2xl:leading-[3.5rem] text-[#423f32]"
+            className="text-justify font-montserrat tracking-widest text-base lg:text-xl xl:text-2xl 2xl:text-3xl lg:leading-8 xl:leading-10 2xl:leading-[3.5rem]"
             component="p"
             variant="body1"
           >
-            After a traumatic birth she wondered if she would ever lift weights,
-            surf, or carry her son pain-free. After trying every postpartum
-            recovery method she could find, she finally saw results when she saw
-            a corrective exercise specialist. She was inspired to get her
-            professional certification so that she could help other women see
-            the same life-changing results. Brooke combines her passion for
-            corrective exercise and functional training to educate women about
-            their bodies and to empower them to use them better.
+            After my postpartum diagnosis I believed that I would never be able
+            to do the active things that I loved doing. By creating new habits
+            and improving my movement, I am back in action. Let's work together
+            to get you back to what you love doing!
           </Typography>
         </div>
       </div>
       {/* TODO: fix responsiveness */}
       <div
-        className="flex flex-col items-center bg-[url(../../public/contact_background.png)] bg-cover pb-4"
+        className="flex flex-col items-center bg-[url(../../public/contact_background.png)] bg-cover pb-4 shadow-[0px_10px_50px_0px_gray]"
         ref={contactRef}
       >
         <div className="flex flex-col items-center w-4/5 md:w-2/5 xl:w-1/3 2xl:w-1/4">
-          <Image className="w-24 md:w-28" alt="Momfit logo" src={logo} />
+          <Image className="w-24 md:w-28" alt="Momfit logo" src={whiteLogo} />
           <Typography
             className="text-white text-center font-averia_serif_light text-5xl lg:text-7xl"
             component="h3"

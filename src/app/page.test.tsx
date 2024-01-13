@@ -14,9 +14,6 @@ describe("Home Page, ", () => {
         name: /functional \& corrective exercise for moms/i,
       })
     ).toBeVisible();
-    expect(
-      screen.getByRole("button", { name: /schedule a consultation/i })
-    ).toBeVisible();
   });
 
   // Intro Section
@@ -25,12 +22,11 @@ describe("Home Page, ", () => {
     expect(
       screen.getByRole("heading", { name: /Learn the essentials/i })
     ).toBeVisible();
-    expect(
-      screen.getByRole("button", { name: /^schedule a consult$/i })
-    ).toBeVisible();
-    expect(screen.getByText(/MOMFIT is a highly specialized/i)).toBeVisible();
-    expect(screen.getByText(/We start with a head-to-toe/i)).toBeVisible();
-    expect(screen.getByText(/Whatever your goal is/i)).toBeVisible();
+    expect(screen.getByRole("button", { name: /contact us/i })).toBeVisible();
+    expect(screen.getByText(/Are you unsure/i)).toBeVisible();
+    expect(screen.getByText(/Are you frustrated/i)).toBeVisible();
+    expect(screen.getByText(/We offer mommy/i)).toBeVisible();
+    expect(screen.getByText(/we're here to help/i)).toBeVisible();
     expect(screen.getByAltText("picture of two friends")).toBeVisible();
   });
 
@@ -42,9 +38,9 @@ describe("Home Page, ", () => {
     ).toBeVisible();
     expect(screen.getByText(/^pregnancy$/i)).toBeVisible();
     expect(screen.getByAltText(/pregnant surfer/i)).toBeVisible();
-    expect(screen.getByText(/diastasis/i)).toBeVisible();
+    expect(screen.getByText(/^diastasis$/i)).toBeVisible();
     expect(screen.getByAltText(/girl doing banded pull-ups/i)).toBeVisible();
-    expect(screen.getByText(/prolapse/i)).toBeVisible();
+    expect(screen.getByText(/^prolapse$/i)).toBeVisible();
     expect(
       screen.getByAltText(/personal trainer coaching deadlifts/i)
     ).toBeVisible();
@@ -54,8 +50,19 @@ describe("Home Page, ", () => {
     expect(
       screen.getByAltText(/pregnant lady hiking in the mountains/i)
     ).toBeVisible();
-    expect(screen.getByText(/chronic back pain/i)).toBeVisible();
+    expect(screen.getByText(/chronic back aches/i)).toBeVisible();
     expect(screen.getByAltText(/^ladies doing yoga$/i)).toBeVisible();
+  });
+
+  // Difference About Us
+  it("renders difference section", () => {
+    render(<Home />);
+    expect(
+      screen.getByRole("heading", { name: /we do things a bit differently/i })
+    ).toBeVisible();
+    expect(
+      screen.getByText(/we're not just another mom bootcamp/i)
+    ).toBeVisible();
   });
 
   // About
@@ -65,28 +72,16 @@ describe("Home Page, ", () => {
       screen.getByRole("heading", { name: /about brooke/i })
     ).toBeVisible();
     expect(screen.getByText(/nasm cpt, pces/i)).toBeVisible();
-    expect(screen.getByText(/^as a firefighter/i)).toBeVisible();
-    expect(
-      screen.getByText(/the most effective during a pregnancy.$/i)
-    ).toBeVisible();
-    expect(screen.getByText(/^after a traumatic birth/i)).toBeVisible();
-    expect(
-      screen.getByText(/empower them to use them better.$/i)
-    ).toBeVisible();
-    expect(
-      screen.getByRole("img", { name: /firefighters working/i })
-    ).toBeVisible();
+    expect(screen.getByText(/i got pregnant/i)).toBeVisible();
+    expect(screen.getByText(/after my postpartum diagnosis/i)).toBeVisible();
     expect(
       screen.getByRole("img", {
         name: /mom and baby at the beach with a surfboard/i,
       })
     ).toBeVisible();
-    expect(
-      screen.getByRole("img", { name: /two ladies doing yoga outside/i })
-    ).toBeVisible();
+    expect(screen.getByRole("img", { name: /brooke and zeke/i })).toBeVisible();
   });
 
-  //TODO finish this part
   // Contact
   it("renders contact section", () => {
     render(<Home />);

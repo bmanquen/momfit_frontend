@@ -12,8 +12,8 @@ import { AppBar, Button, IconButton, Toolbar } from "@mui/material";
 import { isMobileOnly } from "react-device-detect";
 import navyLogo from "../../public/navyLogo.png";
 import MenuIcon from "@mui/icons-material/Menu";
-import LaunchIcon from "@mui/icons-material/Launch";
 import clsx from "clsx";
+import { usePathname } from "next/navigation";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -36,20 +36,20 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [activeNavItem, setActiveNavItem] = React.useState(0);
   const [isNavOpen, setIsNavOpen] = React.useState(false);
   const [isMobileDevice, setIsMobileDevice] = React.useState(false);
   const pages = ["Home", "Events"];
-  const links = ["/", ""];
+  const links = ["/", "/events"];
+  const currPath = usePathname();
 
   React.useEffect(() => {
     if (isMobileOnly) {
       setIsMobileDevice(true);
     }
-  });
+  }, [isMobileDevice]);
 
   const navChange = (index: number) => {
-    setActiveNavItem(index);
+    setIsNavOpen(false);
   };
 
   function toggleNav() {
@@ -114,7 +114,7 @@ export default function RootLayout({
                       <div data-testid={`navItem${index}`} key={index}>
                         <Button
                           className={clsx([
-                            activeNavItem === index ? "bg-gray-100" : "",
+                            currPath === links[index] ? "bg-gray-100" : "",
                             "text-black hover:bg-gray-100 w-full md:w-auto h-full md:mx-2 md:px-4 rounded-none",
                           ])}
                           onClick={() => navChange(index)}
@@ -122,21 +122,9 @@ export default function RootLayout({
                         >
                           <Link
                             className="font-montserrat tracking-widest font-bold"
-                            href={
-                              page === "Events"
-                                ? "https://lvoaet.pushpress.com/landing/events/cal-c86af468-d5d3-4eed-b7c8-5080"
-                                : links[index]
-                            }
-                            target="_blank"
+                            href={links[index]}
                           >
                             {page}
-                            {page === "Events" ? (
-                              <LaunchIcon
-                                className="ml-2"
-                                color="disabled"
-                                fontSize="small"
-                              />
-                            ) : null}
                           </Link>
                         </Button>
                       </div>

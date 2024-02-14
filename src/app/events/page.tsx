@@ -21,7 +21,7 @@ export default function Events() {
         day: "2-digit",
       }),
       time: "5pm-6pm CST",
-      cost: null,
+      cost: "Free with Play Pass",
       url: "https://www.monamiplaystudio.com/events/postpartum-fitness-class?fbclid=IwAR3rxtpA4l2BJ3YcU91COFZooA4_7SgwLILCIQwjaX2LJ6BP3YODBYx9PB0",
     },
     {
@@ -46,24 +46,22 @@ export default function Events() {
       {events.map((currEvent, index) => {
         return (
           <div
-            className="flex flex-col shadow-md shadow-gray-400 my-4 p-2 rounded-md gap-6 2xl:gap-10 bg-white"
+            className="flex flex-col shadow-md shadow-gray-400 my-4 p-2 rounded-md gap-6 md:gap-8 lg:gap-10 bg-white items-center"
             key={`Event ${index}`}
           >
             <div className="flex flex-col">
-              <Typography className="text-center text-[#23334d] font-averia_serif_light font-bold tracking-widest text-lg lg:text-xl 2xl:text-2xl w-3/4 m-auto">
+              <Typography className="text-center text-[#23334d] font-averia_serif_light font-bold tracking-widest text-lg md:text-xl 2xl:text-2xl w-3/4 md:w-full m-auto">
                 {currEvent.title}
               </Typography>
               <Typography className="text-center font-montserrat text-xs lg:text-sm 2xl:text-base">
                 {currEvent.childcare}
               </Typography>
             </div>
-            <div className="flex gap-2 md:gap-12 md:w-11/12 m-auto">
-              <div className="flex flex-col gap-2 w-7/12">
-                <Typography className="font-montserrat font-medium tracking-widest text-sm lg:text-base 2xl:text-lg">
-                  {currEvent.summary}
-                </Typography>
-              </div>
-              <div className="flex flex-col ml-auto gap-2 w-5/12">
+            <div className="flex w-[85%] justify-between self-center gap-2">
+              <Typography className="font-montserrat font-medium tracking-widest text-sm md:text-base 2xl:text-lg max-w-[220px] md:max-w-xs">
+                {currEvent.summary}
+              </Typography>
+              <div className="flex flex-col gap-2 min-w-fit">
                 <div className="flex gap-2">
                   <Typography className="font-bold font-montserrat text-sm lg:text-base 2xl:text-lg">
                     Date:
@@ -115,11 +113,11 @@ export default function Events() {
               <Accordion>
                 <AccordionSummary
                   aria-controls={`event-${index}-more-info`}
-                  className="font-montserrat font-semibold text-sm lg:text-base 2xl:text-lg"
+                  className="font-montserrat font-bold text-base 2xl:text-lg"
                   id={`event-${index}-more-info`}
                   expandIcon={<ExpandMore />}
                 >
-                  More Info
+                  Details
                 </AccordionSummary>
                 <AccordionDetails className="font-montserrat text-sm lg:text-base 2xl:text-lg w-11/12 m-auto">
                   {parse(currEvent.description)}

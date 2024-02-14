@@ -310,13 +310,22 @@ export default function Home() {
         <div className="flex flex-col gap-4 text-white">
           <div className="flex gap-4 lg:gap-10">
             <EmailRoundedIcon fontSize="large" />
-            <Typography className="font-montserrat align-middle xl:text-xl">
+            <Typography
+              className="font-montserrat align-middle xl:text-xl"
+              component="a"
+              href="mailto:momfitokc@gmail.com"
+              target="_blank"
+            >
               momfitokc@gmail.com
             </Typography>
           </div>
           <div className="flex gap-4 lg:gap-10">
             <PhoneIphoneRoundedIcon fontSize="large" />
-            <Typography className="font-montserrat align-middle xl:text-xl">
+            <Typography
+              className="font-montserrat align-middle xl:text-xl"
+              component="a"
+              href="tel:714-732-3484"
+            >
               (714)-732-3484
             </Typography>
           </div>

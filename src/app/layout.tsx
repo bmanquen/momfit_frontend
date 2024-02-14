@@ -115,7 +115,7 @@ export default function RootLayout({
                         <Button
                           className={clsx([
                             currPath === links[index] ? "bg-gray-100" : "",
-                            "text-black hover:bg-gray-100 w-full md:w-auto h-full md:mx-2 md:px-4 rounded-none",
+                            "text-black hover:bg-gray-100 w-11/12 md:w-auto h-full py-4 m-2 md:mx-2 md:my-0 md:px-4 rounded-none",
                           ])}
                           onClick={() => navChange(index)}
                           variant="text"

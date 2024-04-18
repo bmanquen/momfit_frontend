@@ -1,19 +1,13 @@
-"use client";
-
 import "../styles/globals.css";
 import { Inter, Montserrat, Averia_Serif_Libre } from "next/font/google";
-import Link from "next/link";
 import React from "react";
-import Image from "next/image";
+
 // TODO: Implement Analytics once we resolve issues with Jest.
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { AppBar, Button, IconButton, Toolbar } from "@mui/material";
-import { isMobileOnly } from "react-device-detect";
-import navyLogo from "../../public/navyLogo.png";
-import MenuIcon from "@mui/icons-material/Menu";
-import clsx from "clsx";
-import { usePathname } from "next/navigation";
+import { Toolbar } from "@mui/material";
+import { NavBar } from "../components/navBar";
+import Providers from "../components/Providers";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -31,30 +25,11 @@ const averia_serif_light = Averia_Serif_Libre({
   variable: "--font-averia-serif",
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [isNavOpen, setIsNavOpen] = React.useState(false);
-  const [isMobileDevice, setIsMobileDevice] = React.useState(false);
-  const pages = ["Home", "Events"];
-  const links = ["/", "/events"];
-  const currPath = usePathname();
-
-  React.useEffect(() => {
-    if (isMobileOnly) {
-      setIsMobileDevice(true);
-    }
-  }, [isMobileDevice]);
-
-  const navChange = (index: number) => {
-    setIsNavOpen(false);
-  };
-
-  function toggleNav() {
-    setIsNavOpen(!isNavOpen);
-  }
   return (
     <html
       lang="en"
@@ -81,62 +56,17 @@ export default function RootLayout({
           sizes="16x16"
           href="/favicon-16x16.png"
         />
-        <link rel="manifest" href="/site.webmanifest" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
       </head>
       <body>
-        <AppBar color="inherit" component="nav">
-          <Toolbar>
-            <div className="flex flex-col text-center md:flex-row w-full">
-              {isMobileDevice ? (
-                <IconButton
-                  className="text-left self-start"
-                  onClick={toggleNav}
-                >
-                  <MenuIcon />
-                </IconButton>
-              ) : null}
-              {!isMobileDevice ? (
-                <Link href={links[0]}>
-                  <Image
-                    alt="Momfit logo"
-                    className="mr-6"
-                    src={navyLogo}
-                    width={60}
-                  />
-                </Link>
-              ) : null}
-              {(isMobileDevice && isNavOpen) || !isMobileDevice
-                ? pages.map((page, index) => {
-                    return (
-                      <div data-testid={`navItem${index}`} key={index}>
-                        <Button
-                          className={clsx([
-                            currPath === links[index] ? "bg-gray-100" : "",
-                            "text-black hover:bg-gray-100 w-11/12 md:w-auto h-full py-4 m-2 md:mx-2 md:my-0 md:px-4 rounded-none",
-                          ])}
-                          onClick={() => navChange(index)}
-                          variant="text"
-                        >
-                          <Link
-                            className="font-montserrat tracking-widest font-bold"
-                            href={links[index]}
-                          >
-                            {page}
-                          </Link>
-                        </Button>
-                      </div>
-                    );
-                  })
-                : null}
-            </div>
-          </Toolbar>
-        </AppBar>
         <div>
-          <Toolbar />
-          {children}
+          <Providers>
+            <NavBar />
+            <Toolbar />
+            {children}
+          </Providers>
         </div>
         <Analytics />
         <SpeedInsights />

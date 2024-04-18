@@ -210,25 +210,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col justify-center items-center gap-12 md:gap-16 lg:gap-24 xl:gap-28 2xl:gap-32 pb-16 md:pb-24 lg:pb-40 xl:pb-44 2xl:pb-48 shadow-[0px_20px_50px_0px_gray]">
-        <Typography
-          className="font-averia_serif_light bg-[#273854] text-white p-2 md:p-4 lg:p-8 xl:p-12 2xl:p-16 text-center text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-extrabold w-full"
-          component="h3"
-          variant="h3"
-        >
-          We do things a bit differently at MOMFIT...
-        </Typography>
-        <Typography
-          className="text-justify font-montserrat tracking-widest font-medium md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl md:!leading-[2rem] lg:!leading-[3rem] xl:!leading-[4rem] 2xl:!leading-[5rem] w-11/12 md:w-3/4"
-          component="p"
-        >
-          We're not just another mom bootcamp. We have a strong focus on
-          empowering women with education and a strong focus on quality of
-          movement. Brooke combines her education in corrective exercise and
-          tactical fitness to get moms moving better both in and out of they
-          gym.
-        </Typography>
-      </div>
       <div className="bg-[#1e3653] text-white flex flex-col items-center md:flex-row gap-2 md:gap-8 lg:gap-12 2xl:gap-16 py-2 md:py-8 xl:py-12 2xl:py-16 px-2 md:px-8 xl:px-12 2xl:px-16 shadow-[0px_10px_50px_0px_gray]">
         <div className="grid grid-cols-3 md:grid-cols-1 gap-2 md:gap-4 lg:gap-8 2xl:gap-12 md:w-1/3">
           <Image

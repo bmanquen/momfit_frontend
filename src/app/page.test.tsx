@@ -54,17 +54,6 @@ describe("Home Page, ", () => {
     expect(screen.getByAltText(/^ladies doing yoga$/i)).toBeVisible();
   });
 
-  // Difference About Us
-  it("renders difference section", () => {
-    render(<Home />);
-    expect(
-      screen.getByRole("heading", { name: /we do things a bit differently/i })
-    ).toBeVisible();
-    expect(
-      screen.getByText(/we're not just another mom bootcamp/i)
-    ).toBeVisible();
-  });
-
   // About
   it("renders about section", () => {
     render(<Home />);

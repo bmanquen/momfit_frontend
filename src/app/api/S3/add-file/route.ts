@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     const buffer = Buffer.from(await imageFile.arrayBuffer());
     const fileName = await uploadFileToS3(buffer, imageFile.name);
 
-    const imageUrl = `https://${process.env.S3_BUCKET_NAME}.s3.amazonaws.com/${fileName}`;
+    const imageUrl = `https://${process.env.S3_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${fileName}`;
     return NextResponse.json(
       { imageUrl },
       {

@@ -34,7 +34,7 @@ import parse from "html-react-parser";
 import dayjs from "dayjs";
 import { enqueueSnackbar } from "notistack";
 import { UploadFile } from "@mui/icons-material";
-import { localApi } from "@/src/utils/constants";
+import { localApi, momfitBackend } from "@/src/utils/constants";
 
 type EditEventModalProps = {
   isOpen: boolean;
@@ -94,7 +94,7 @@ export function EditEventModal({
 
     try {
       if (newImageFile) {
-        const res = await fetch(`${localApi}/api/S3/add-file`, {
+        const res = await fetch(`${momfitBackend}/upload-file`, {
           method: "POST",
           body: formData,
         });

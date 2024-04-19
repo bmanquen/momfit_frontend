@@ -31,7 +31,7 @@ import { DateTimePicker } from "@mui/x-date-pickers";
 import { Dayjs } from "dayjs";
 import { enqueueSnackbar } from "notistack";
 import { UploadFile } from "@mui/icons-material";
-import { localApi } from "@/src/utils/constants";
+import { momfitBackend } from "@/src/utils/constants";
 
 type CreateEventModalProps = {
   isOpen: boolean;
@@ -62,7 +62,7 @@ export function CreateEventModal({ isOpen, setIsOpen }: CreateEventModalProps) {
 
     try {
       if (imageFile) {
-        const res = await fetch(`${localApi}/api/S3/add-file`, {
+        const res = await fetch(`${momfitBackend}/upload-file`, {
           method: "POST",
           body: formData,
         });

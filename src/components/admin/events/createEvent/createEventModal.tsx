@@ -162,7 +162,8 @@ export function CreateEventModal({ isOpen, setIsOpen }: CreateEventModalProps) {
                 {...register("summary", { required: "Summary is required" })}
               />
               <RichTextEditor
-                className="h-56"
+                parseOptions={{ preserveWhitespace: "full" }}
+                className="h-auto"
                 extensions={[
                   HardBreak.extend({
                     addKeyboardShortcuts() {

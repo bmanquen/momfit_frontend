@@ -5,6 +5,8 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Button,
+  CircularProgress,
   IconButton,
   Typography,
 } from "@mui/material";
@@ -36,10 +38,14 @@ export function EventsComponent({ isAdmin = false }: { isAdmin?: boolean }) {
   }, [session, isAdmin]);
 
   if (eventsStatus === "pending") {
-    return <p>Loading...</p>;
+    return (
+      <div className="w-full h-screen">
+        <CircularProgress className="relative top-1/2 left-1/2" />
+      </div>
+    );
   }
   if (eventsStatus === "error") {
-    return <p>Error...</p>;
+    return <p>Error</p>;
   }
 
   const childcare = (childcare: Childcare) => {
@@ -142,7 +148,7 @@ export function EventsComponent({ isAdmin = false }: { isAdmin?: boolean }) {
         </>
       ) : null}{" "}
       {mfEvents.length > 0 ? (
-        mfEvents.map((currEvent, index) => {
+        mfEvents.map((currEvent: MF_Event, index: number) => {
           return (
             <div
               className="flex flex-col shadow-md shadow-gray-400 my-4 p-2 rounded-md gap-4 md:gap-6 lg:gap-8 bg-white items-center w-full"
@@ -159,11 +165,11 @@ export function EventsComponent({ isAdmin = false }: { isAdmin?: boolean }) {
                   {childcare(currEvent.childcare)}
                 </Typography>
               </div>
-              <div className="flex flex-col md:flex-row w-[95%] gap-2 lg:gap-0">
+              <div className="flex flex-col md:flex-row w-[95%] justify-center gap-2 lg:gap-0">
                 <div className="flex flex-col justify-between xl:flex-row self-center gap-4 mb-2 w-full md:w-10/12 xl:w-11/12">
-                  <div className="flex flex-col md:flex-row items-center md:items-start lg:items-center gap-4 w-full xl:w-4/5">
+                  <div className="flex flex-col md:flex-row items-center md:items-start lg:items-center gap-4 w-full xl:w-4/5 mb-4">
                     {currEvent.image ? (
-                      <div className="flex flex-col items-center justify-start w-full md:w-1/2">
+                      <div className="flex flex-col items-center justify-start w-full">
                         <Image
                           alt={`${currEvent.title} image`}
                           className="relative rounded-md h-auto"
@@ -172,11 +178,11 @@ export function EventsComponent({ isAdmin = false }: { isAdmin?: boolean }) {
                         />
                       </div>
                     ) : null}
-                    <Typography className="font-montserrat font-medium tracking-widest text-start text-base lg:text-lg xl:text-xl 2xl:text-2xl leading-10 w-full md:w-1/2 mx-2">
+                    <Typography className="font-montserrat font-medium tracking-widest text-start text-base lg:text-lg xl:text-xl 2xl:text-2xl leading-10 w-full mx-2">
                       {currEvent.summary}
                     </Typography>
                   </div>
-                  <div className="flex flex-col md:flex-row xl:flex-col flex-wrap gap-2 items-start justify-between xl:justify-center w-3/4 md:w-auto xl:w-1/5">
+                  <div className="flex flex-col md:flex-row xl:flex-col flex-wrap gap-2 items-start justify-between xl:justify-around w-3/4 md:w-auto xl:w-1/5">
                     <div className="flex flex-wrap">
                       <Typography className="font-bold font-montserrat text-sm md:text-base 2xl:text-lg mr-1">
                         Date:
@@ -235,7 +241,27 @@ export function EventsComponent({ isAdmin = false }: { isAdmin?: boolean }) {
                   </div>
                 ) : null}
               </div>
-              {currEvent.description ? (
+              {!currEvent.can_register && currEvent.url ? (
+                <Button
+                  className="bg-[#23334d] font-montserrat tracking-widest xl:text-xl xl:w-1/5 xl:py-2"
+                  variant="contained"
+                  href={`https://${currEvent.url}`}
+                  target="_blank"
+                >
+                  Join Waitlist
+                </Button>
+              ) : null}
+              {currEvent.url && currEvent.can_register ? (
+                <Button
+                  className="bg-[#23334d] font-montserrat tracking-widest xl:text-xl xl:w-1/5 xl:py-2"
+                  variant="contained"
+                  href={`https://${currEvent.url}`}
+                  target="_blank"
+                >
+                  Register
+                </Button>
+              ) : null}
+              {currEvent.description && currEvent.description !== "<p></p>" ? (
                 <Accordion className="w-full">
                   <AccordionSummary
                     aria-controls={`event-${index}-more-info`}

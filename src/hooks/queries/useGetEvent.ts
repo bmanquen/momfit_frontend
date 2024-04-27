@@ -16,6 +16,6 @@ const fetchEvent = async (eventId: number): Promise<MF_Event> => {
 export const useGetEvent = (eventId: number) => {
   return useQuery({
     queryKey: ["event", eventId],
-    queryFn: () => fetchEvent(eventId),
+    queryFn: async () => await fetchEvent(eventId),
   });
 };

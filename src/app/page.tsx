@@ -1,7 +1,6 @@
 "use client";
-import { Button, Divider, Typography } from "@mui/material";
+import { Button, Divider, IconButton, Typography } from "@mui/material";
 import React, { useRef } from "react";
-import { isMobileOnly } from "react-device-detect";
 import Image from "next/image";
 import navyLogo from "../../public/navyLogo.png";
 import whiteLogo from "../../public/whiteLogo.png";
@@ -20,6 +19,7 @@ import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import PhoneIphoneRoundedIcon from "@mui/icons-material/PhoneIphoneRounded";
 import LocationOnSharpIcon from "@mui/icons-material/LocationOnSharp";
+import { Facebook } from "@mui/icons-material";
 
 export default function Home() {
   const contactRef = useRef(null);
@@ -63,6 +63,15 @@ export default function Home() {
             >
               Functional & Corrective Exercise for Moms
             </Typography>
+            <div className="mt-4 flex gap-4">
+              <IconButton
+                aria-label="facebook link"
+                href="https://www.facebook.com/people/MomFit-Fitness-Training-for-Moms/61554754487020/?mibextid=LQQJ4d"
+                target="_blank"
+              >
+                <Facebook htmlColor="#1e3653" fontSize="large" />
+              </IconButton>
+            </div>
           </div>
         </div>
       </div>
@@ -131,7 +140,7 @@ export default function Home() {
           component="h3"
           variant="h3"
         >
-          What we can help with
+          Safe & Effective Exercise For:
         </Typography>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 w-4/5 md:w-2/3">
           <div>

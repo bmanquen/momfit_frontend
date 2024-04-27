@@ -34,7 +34,7 @@ describe("Home Page, ", () => {
   it("renders help section", () => {
     render(<Home />);
     expect(
-      screen.getByRole("heading", { name: /what we can help with/i })
+      screen.getByRole("heading", { name: /safe & effective exercise for:/i })
     ).toBeVisible();
     expect(screen.getByText(/^pregnancy$/i)).toBeVisible();
     expect(screen.getByAltText(/pregnant surfer/i)).toBeVisible();

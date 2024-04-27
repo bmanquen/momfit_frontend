@@ -2,7 +2,10 @@ import { useEditEvent } from "@/src/hooks/mutations/useEditEvent";
 import { useGetEvent } from "@/src/hooks/queries/useGetEvent";
 import {
   Button,
+  Checkbox,
   Dialog,
+  FormControlLabel,
+  FormGroup,
   InputAdornment,
   MenuItem,
   Modal,
@@ -15,6 +18,7 @@ import TextAlign from "@tiptap/extension-text-align";
 import { TextStyle } from "@tiptap/extension-text-style";
 import Underline from "@tiptap/extension-underline";
 import StarterKit from "@tiptap/starter-kit";
+import HardBreak from "@tiptap/extension-hard-break";
 import {
   FontSize,
   MenuButtonBold,
@@ -47,35 +51,32 @@ export function EditEventModal({
   setIsOpen,
   eventId,
 }: EditEventModalProps) {
-  const { data: mfEvent, status, isLoading, isError } = useGetEvent(eventId);
+  const { data: mfEvent, isSuccess, isLoading, isError } = useGetEvent(eventId);
   const [oldImageUrl, setOldImageUrl] = useState<string>(mfEvent?.image);
   const [newImageFile, setNewImageFile] = useState<File>(null);
   const [imageLabel, setImageLabel] = useState<string>("Choose File");
+
   const {
     control,
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<MF_Event>();
+  } = useForm<MF_Event>({
+    defaultValues: { can_register: mfEvent?.can_register },
+  });
   const editEvent = useEditEvent(mfEvent);
   const rteRef = useRef<RichTextEditorRef>(null);
 
+  if (!isLoading && !isError && mfEvent.image) {
+    setImageLabel(mfEvent?.image.match(/[^\/]+$/g)[0]);
+    setOldImageUrl(mfEvent?.image);
+  }
+
   useEffect(() => {
-    if (!isLoading && !isError && mfEvent.image) {
-      setImageLabel(mfEvent?.image.match(/[^\/]+$/g)[0]);
-      setOldImageUrl(mfEvent?.image);
-    }
     if (newImageFile) {
       setImageLabel(newImageFile.name);
     }
-  }, [
-    imageLabel,
-    newImageFile,
-    oldImageUrl,
-    isLoading,
-    isError,
-    mfEvent?.image,
-  ]);
+  }, [newImageFile]);
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     setNewImageFile(event.target.files[0]);
@@ -122,32 +123,42 @@ export function EditEventModal({
     }
   };
 
-  if (status === "pending") {
+  if (!mfEvent) {
+    return null;
+  }
+  if (isLoading) {
     return (
-      <Modal open={status === "pending"}>
+      <Modal open={isLoading}>
         <div className="absolute bg-white rounded-md p-4 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           Loading...
         </div>
       </Modal>
     );
   }
-  if (status === "error") {
+  if (isError) {
     return (
-      <Modal open={status === "error"}>
+      <Modal open={isError}>
         <div>Error!</div>
       </Modal>
     );
   }
-  if (status === "success") {
+  if (isSuccess) {
     return (
       <Dialog fullWidth={true} open={isOpen} onClose={() => setIsOpen(false)}>
         <div className="p-4">
-          <Typography>Edit Event</Typography>
+          <Typography
+            gutterBottom
+            className="text-center"
+            component="h2"
+            variant="h4"
+          >
+            Edit Event
+          </Typography>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col mb-2">
               <label htmlFor="image">Image</label>
               <Button
-                className="max-w-min mb-2"
+                className="max-w-fit mb-2"
                 color="inherit"
                 component="label"
                 variant="outlined"
@@ -183,8 +194,16 @@ export function EditEventModal({
                 {...register("summary", { required: "Summary is required" })}
               />
               <RichTextEditor
-                className="h-56"
+                parseOptions={{ preserveWhitespace: "full" }}
+                className="h-auto"
                 extensions={[
+                  HardBreak.extend({
+                    addKeyboardShortcuts() {
+                      return {
+                        Enter: () => this.editor.commands.setHardBreak(),
+                      };
+                    },
+                  }),
                   StarterKit,
                   FontSize,
                   Placeholder.configure({ placeholder: "Description" }),
@@ -253,7 +272,10 @@ export function EditEventModal({
                         inputRef={field.ref}
                         label="Start Date"
                         onChange={(start_date) => {
-                          field.onChange(start_date);
+                          field.onChange(start_date?.toISOString());
+                        }}
+                        slotProps={{
+                          actionBar: { actions: ["clear", "cancel", "accept"] },
                         }}
                       />
                     );
@@ -272,7 +294,10 @@ export function EditEventModal({
                         inputRef={field.ref}
                         label="End Date"
                         onChange={(end_date) => {
-                          field.onChange(end_date);
+                          field.onChange(end_date?.toISOString());
+                        }}
+                        slotProps={{
+                          actionBar: { actions: ["clear", "cancel", "accept"] },
                         }}
                       />
                     );
@@ -295,6 +320,11 @@ export function EditEventModal({
                 <TextField
                   className="w-2/3"
                   defaultValue={mfEvent.url}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">https://</InputAdornment>
+                    ),
+                  }}
                   label="URL"
                   margin="dense"
                   {...register("url")}
@@ -312,6 +342,21 @@ export function EditEventModal({
                   Childcare Options Available
                 </MenuItem>
               </TextField>
+              <Controller
+                name="can_register"
+                control={control}
+                render={({ field }) => (
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        defaultChecked={mfEvent.can_register}
+                        {...field}
+                      />
+                    }
+                    label="Registration is open"
+                  />
+                )}
+              />
             </div>
             <Button
               className="border-2 mt-4"

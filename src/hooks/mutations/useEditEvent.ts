@@ -14,8 +14,9 @@ const editEvent = async (eventData: MF_Event) => {
 export const useEditEvent = (eventData: MF_Event) => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (eventData: MF_Event) => editEvent(eventData),
+    mutationFn: async (eventData: MF_Event) => await editEvent(eventData),
     onSuccess: () => {
+      queryClient.setQueryData(["event", eventData.id], eventData);
       queryClient.invalidateQueries({
         queryKey: ["event", eventData.id],
       });

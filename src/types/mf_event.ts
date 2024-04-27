@@ -13,4 +13,5 @@ type MF_Event = {
   cost?: number;
   url?: string;
   childcare?: Childcare;
+  can_register?: boolean;
 };

@@ -1,7 +1,10 @@
 import { useCreateEvent } from "@/src/hooks/mutations/useCreateEvent";
 import {
   Button,
+  Checkbox,
   Dialog,
+  FormControlLabel,
+  FormGroup,
   InputAdornment,
   MenuItem,
   TextField,
@@ -32,6 +35,7 @@ import { Dayjs } from "dayjs";
 import { enqueueSnackbar } from "notistack";
 import { UploadFile } from "@mui/icons-material";
 import { momfitBackend } from "@/src/utils/constants";
+import HardBreak from "@tiptap/extension-hard-break";
 
 type CreateEventModalProps = {
   isOpen: boolean;
@@ -102,7 +106,12 @@ export function CreateEventModal({ isOpen, setIsOpen }: CreateEventModalProps) {
     <>
       <Dialog fullWidth={true} open={isOpen} onClose={() => setIsOpen(false)}>
         <div className="p-4">
-          <Typography gutterBottom component="h2" variant="h4">
+          <Typography
+            gutterBottom
+            className="text-center"
+            component="h2"
+            variant="h4"
+          >
             Create an Event
           </Typography>
           <form
@@ -155,6 +164,13 @@ export function CreateEventModal({ isOpen, setIsOpen }: CreateEventModalProps) {
               <RichTextEditor
                 className="h-56"
                 extensions={[
+                  HardBreak.extend({
+                    addKeyboardShortcuts() {
+                      return {
+                        Enter: () => this.editor.commands.setHardBreak(),
+                      };
+                    },
+                  }),
                   StarterKit,
                   FontSize,
                   Placeholder.configure({ placeholder: "Description" }),
@@ -207,7 +223,10 @@ export function CreateEventModal({ isOpen, setIsOpen }: CreateEventModalProps) {
                         defaultValue={null as Dayjs}
                         label="Start Date"
                         onChange={(start_date) => {
-                          field.onChange(start_date.toISOString());
+                          field.onChange(start_date?.toISOString());
+                        }}
+                        slotProps={{
+                          actionBar: { actions: ["clear", "cancel", "accept"] },
                         }}
                       />
                     );
@@ -224,7 +243,10 @@ export function CreateEventModal({ isOpen, setIsOpen }: CreateEventModalProps) {
                         inputRef={field.ref}
                         label="End Date"
                         onChange={(end_date) => {
-                          field.onChange(end_date.toISOString());
+                          field.onChange(end_date?.toISOString());
+                        }}
+                        slotProps={{
+                          actionBar: { actions: ["clear", "cancel", "accept"] },
                         }}
                       />
                     );
@@ -245,6 +267,11 @@ export function CreateEventModal({ isOpen, setIsOpen }: CreateEventModalProps) {
                 />
                 <TextField
                   className="w-2/3"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">https://</InputAdornment>
+                    ),
+                  }}
                   label="URL"
                   margin="dense"
                   {...register("url")}
@@ -257,6 +284,16 @@ export function CreateEventModal({ isOpen, setIsOpen }: CreateEventModalProps) {
                   Childcare Options Available
                 </MenuItem>
               </TextField>
+              <Controller
+                name="can_register"
+                control={control}
+                render={({ field }) => (
+                  <FormControlLabel
+                    control={<Checkbox {...field} />}
+                    label="Registration is open"
+                  />
+                )}
+              />
             </div>
             <Button
               className="border-2 mt-4"

@@ -1,3 +1,5 @@
+"use client";
+
 import { useDeleteEvent } from "@/src/hooks/mutations/useDeleteEvent";
 import { useGetEvent } from "@/src/hooks/queries/useGetEvent";
 import { localApi } from "@/src/utils/constants";

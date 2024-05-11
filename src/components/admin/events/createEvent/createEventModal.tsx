@@ -1,3 +1,5 @@
+"use client";
+
 import { useCreateEvent } from "@/src/hooks/mutations/useCreateEvent";
 import {
   Button,

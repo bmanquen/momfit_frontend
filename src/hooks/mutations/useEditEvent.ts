@@ -20,9 +20,11 @@ export const useEditEvent = (eventData: MF_Event) => {
       queryClient.invalidateQueries({
         queryKey: ["event", eventData.id],
       });
+      queryClient.refetchQueries({ queryKey: ["event", eventData.id] });
       queryClient.invalidateQueries({
         queryKey: ["events"],
       });
+      queryClient.refetchQueries({ queryKey: ["events"] });
     },
   });
 };

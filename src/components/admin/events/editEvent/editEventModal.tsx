@@ -1,3 +1,5 @@
+"use client";
+
 import { useEditEvent } from "@/src/hooks/mutations/useEditEvent";
 import { useGetEvent } from "@/src/hooks/queries/useGetEvent";
 import {
@@ -5,7 +7,6 @@ import {
   Checkbox,
   Dialog,
   FormControlLabel,
-  FormGroup,
   InputAdornment,
   MenuItem,
   Modal,
@@ -62,7 +63,22 @@ export function EditEventModal({
     handleSubmit,
     formState: { errors },
   } = useForm<MF_Event>({
-    defaultValues: { can_register: mfEvent?.can_register },
+    defaultValues: {
+      image: mfEvent?.image,
+      title: mfEvent?.title,
+      summary: mfEvent?.summary,
+      description: mfEvent?.description,
+      street_address: mfEvent?.street_address,
+      city: mfEvent?.city,
+      state: mfEvent?.state,
+      zipcode: mfEvent?.zipcode,
+      start_date: mfEvent?.start_date,
+      end_date: mfEvent?.end_date,
+      cost: mfEvent?.cost,
+      url: mfEvent?.url,
+      childcare: mfEvent?.childcare,
+      can_register: mfEvent?.can_register,
+    },
   });
   const editEvent = useEditEvent(mfEvent);
   const rteRef = useRef<RichTextEditorRef>(null);
